@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editing</title>
+</head>
+<body>
+<h2>Employee info:</h2>
+<br>
+<form th:action="@{/saveEmployee}" th:object="${employee}">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <br>
+    <label for="name">Імʼя --> </label>
+    <input type="text" th:field="*{name}" id="name"/>
+
+    <br><br>
+
+    <label for="surname">Прізвище --> </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+
+    <br><br>
+
+    <label for="salary">Зарплата --> </label>
+    <input type="text" th:field="*{salary}" id="salary"/>
+
+    <br><br>
+
+    <label for="departmentselect">Оберіть департамент:</label>
+    <select th:name="depart" id="departmentselect">
+        <option th:value="0">none</option>
+        <option th:each="dep : ${departmentList}" th:value="${dep.getId()}" th:text="${dep.getName()}"></option>
+    </select>
+
+    <!--    <select th:object="${department}" th:field="*{department}" id="department">-->
+    <!--        <option th:each="dep : ${departmentsList}" th:value="${dep}" th:text="${dep.getName()}"></option>-->
+    <!--    </select>-->
+
+    <br><br>
+
+    <input type="submit" value="Save"> <br>
+
+</form>
+</body>
+</html>

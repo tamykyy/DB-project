@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Department</title>
+</head>
+<body>
+
+<h2>All departments</h2>
+
+<table>
+
+    <tr>
+        <th>Назва&nbsp;&nbsp;</th>
+        <th>Максимальна зарплата&nbsp;&nbsp;</th>
+        <th>Мінімальна запрлата&nbsp;&nbsp;</th>
+    </tr>
+
+    <tr th:each="dep : ${departmentList}">
+        <td th:text="${dep.getName()}">&nbsp;&nbsp;</td>
+        <td th:text="${dep.getMaxSalary()}">&nbsp;&nbsp;</td>
+        <td th:text="${dep.getMinSalary()}">&nbsp;&nbsp;</td>
+        <td>
+            <a th:href="@{addToDepartment(depId = ${dep.getId()})}">Add employee</a>
+            <a th:href="@{changeDepartment(depId = ${dep.getId()})}">Edit</a>
+            <a th:href="@{deleteDepartment(depId = ${dep.getId()})}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+<br>
+
+<input type="button" value="add" onclick="window.location.href = 'addDepartment'"/>
+
+</body>
+</html>

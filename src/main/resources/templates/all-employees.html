@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Electronic journal</title>
+</head>
+<body>
+
+<h2>All Employees</h2>
+
+<table>
+
+    <tr>
+        <th>Імʼя&nbsp;&nbsp;</th>
+        <th>Прізвище&nbsp;&nbsp;</th>
+        <th>Зарплата&nbsp;&nbsp;</th>
+        <th>Департамент&nbsp;&nbsp;</th>
+        <th>Параметри&nbsp;&nbsp;</th>
+    </tr>
+
+    <tr th:each="emp : ${employeeList}">
+        <div th:with="dep=${emp.getDepartment()}">
+            <td th:text="${emp.getName()}">&nbsp;&nbsp;</td>
+            <td th:text="${emp.getSurname()}">&nbsp;&nbsp;</td>
+            <td th:text="${emp.getSalary()}">&nbsp;&nbsp;</td>
+            <div th:switch="${dep}">
+                <td th:case="null">none</td>
+                <td th:case="*" th:text="${dep.getName()}"></td>
+            </div>
+        </div>
+        <td>
+            <a th:href="@{/changeEmployee(empId = ${emp.getId()})}">Edit</a>
+            <a th:href="@{/deleteEmployee(empId = ${emp.getId()})}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+<br>
+
+<input type="button" value="add" onclick="window.location.href = 'addEmployee'"/>
+
+</body>
+</html>

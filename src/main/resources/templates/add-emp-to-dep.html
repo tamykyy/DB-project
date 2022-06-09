@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Department</title>
+</head>
+<body>
+
+<form th:action="@{addingEmployee}">
+
+    <input type="hidden" th:name="depId" th:value="${depId}">
+
+    <label for="employees">Оберіть робітника:</label> <br>
+    <select id="employees" th:name="employee">
+        <option th:each="emp : ${employeeList}" th:value="${emp.getId}"
+                th:text="${emp.getName()} + ' ' + ${emp.getSurname()}"></option>
+    </select>
+
+    <input type="submit" value="Назначити в департамент"/>
+</form>
+
+</body>
+</html>
